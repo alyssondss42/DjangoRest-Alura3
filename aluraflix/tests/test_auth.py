@@ -31,6 +31,15 @@ class AuthUserTestCase(APITestCase):
         user = authenticate(username='C3-PO', password='123457')
         self.assertFalse((user is not None) and user.is_authenticated)
 
+    def test_requisicao_get_com_user_autorizado(self):
+        """Teste que verifica GET de user autenticado"""
+        self.client.force_authenticate(self.user)
+        response = self.client.get(self.list_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+        
+
 
 
 
